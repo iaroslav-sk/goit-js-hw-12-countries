@@ -1,0 +1,55 @@
+html {
+  box-sizing: border-box;
+}
+body {
+  margin: 40px;
+  /* background-color: gray; */
+}
+.search-form {
+  width: 500px;
+  margin-left: 40%;
+}
+.input {
+  width: 250px;
+  height: 32px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.search_btn {
+  width: 100px;
+  height: 38px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+.photo-card {
+  border: 1px solid black;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.card__image {
+  width: 400px;
+  height: 350px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.load_more_btn {
+  width: 130px;
+  height: 38px;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin-left: 50%;
+}
