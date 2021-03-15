@@ -1,21 +1,13 @@
 const BASE_URL = 'https://restcountries.eu/rest/v2/';
 
-export default class ImageApiSearchService {
+export default class CountryApiSearchService {
   constructor() {
     this.searchQuery = '';
   }
 
-  fetchImages() {
+  fetchCountries() {
     const url = `${BASE_URL}name/${this.searchQuery}`;
-    return fetch(url)
-      .then(response => response.json())
-      .then(hits => {
-        // if (hits.length > 10) {
-        //   console.log('Введите более корректный запрос!');
-        // }
-
-        return hits;
-      });
+    return fetch(url).then(response => response.json());
   }
 
   get query() {

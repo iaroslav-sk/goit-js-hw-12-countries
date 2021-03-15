@@ -1,16 +1,16 @@
 import searchList from './templates/search-list.hbs';
-import imageItemsCard from './templates/image-items.hbs';
-import ImageApiSearchService from './api/api';
-// --------------------------------------
+import imageItemsCard from './templates/countries-items.hbs';
+import CountryApiSearchService from './api/api';
+import './styles.css';
+import _ from 'lodash';
+
+// --------------------------------------//
 import { error, defaultModules } from '@pnotify/core/dist/PNotify.js';
 import * as PNotifyMobile from '@pnotify/mobile/dist/PNotifyMobile.js';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 defaultModules.set(PNotifyMobile, {});
-// ----------------------------------
-import './styles.css';
-
-const _ = require('lodash');
+// -------------------------------------//
 
 const refs = {
   searchForm: document.querySelector('.input'),
@@ -20,24 +20,24 @@ const refs = {
 
 refs.searchForm.addEventListener('input', _.debounce(onSearch, 500));
 
-const imageApiSearchService = new ImageApiSearchService();
+const countryApiSearchService = new CountryApiSearchService();
 
 function onSearch(e) {
   e.preventDefault();
-  imageApiSearchService.query = e.target.value;
-  if (imageApiSearchService.query.length === 0) {
-    clearImagesFormItem();
+  countryApiSearchService.query = e.target.value;
+  if (countryApiSearchService.query.length === 0) {
+    clearCountyFormItem();
     return;
   }
   clearCountryListItem();
-  clearImagesFormItem();
-  fetchImages();
+  clearCountyFormItem();
+  fetchCountries();
 }
 
-function fetchImages() {
-  imageApiSearchService.fetchImages().then(response => {
+function fetchCountries() {
+  countryApiSearchService.fetchCountries().then(response => {
     if (response.length === 1) {
-      appendImagesCardItems(response);
+      appendCountriesCardItems(response);
       return;
     } else if (response.length <= 10) {
       appendCountryListItems(response);
@@ -49,14 +49,14 @@ function fetchImages() {
   });
 }
 
-function appendImagesCardItems(response) {
+function appendCountriesCardItems(response) {
   refs.gallery.insertAdjacentHTML('beforeend', imageItemsCard(response));
 }
 function appendCountryListItems(response) {
   refs.countryList.insertAdjacentHTML('beforeend', searchList(response));
 }
 
-function clearImagesFormItem() {
+function clearCountyFormItem() {
   refs.gallery.innerHTML = '';
 }
 function clearCountryListItem() {
